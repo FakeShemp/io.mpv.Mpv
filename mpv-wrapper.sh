@@ -9,4 +9,9 @@ if [[ ! -e $link || $(readlink "$link") != "$xdg_pictures" ]]; then
 	ln --symbolic --no-dereference --force "$xdg_pictures" "$link"
 fi
 
+# Optional extensions (e.g. BD-J: io.mpv.Mpv.Extension.bdj)
+for f in /app/extensions/*/*.sh; do
+    [ -r "$f" ] && . "$f"
+done
+
 exec mpv "$@"

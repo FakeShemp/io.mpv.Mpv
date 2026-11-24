@@ -7,6 +7,14 @@ rename-desktop-file: mpv.desktop
 rename-appdata-file: mpv.metainfo.xml
 rename-icon: mpv
 
+add-extensions:
+  io.mpv.Mpv.Extension:
+    directory: extensions
+    version: stable
+    subdirectories: true
+    no-autodownload: true
+    autodelete: true
+
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -30,6 +38,9 @@ finish-args:
 cleanup:
   - '*.la'
   - '*.a'
+
+cleanup-commands:
+  - mkdir -p /app/extensions
 
 modules:
   - modules/mpv.yaml
